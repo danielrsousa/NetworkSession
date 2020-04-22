@@ -18,43 +18,53 @@ To install it, simply add the following line to your .cartfile
 Step 1: Create your request object:
 
 ```swift
-struct MyRequest: ApiRequestProtocol {
-    var baseURL = "https:/myservice"
-    var path: String
+struct MyRequest: NetworkRequestProtocol {
+    var baseURL = "https://blockchain.info"
+    var path: String = "/ticker"
     var method: HTTPMethod  = .get
     var headers: [String : String]?
     var parameters: [String : Any]
 }
 ```
 
-Step 2: Create your model implements Decodable protocol:
+Step 2: Create your model using the Decodable protocol:
 
 ```swift
-struct MyModel: Decodable {
-    let id: Int?
-    let name: String?
-    let description: String?
-    let thumbnail : Thumbnail?
+struct CurrencyModel: Decodable {
+    let USD: CoinModel
+    let BRL: CoinModel
+    
+    struct CoinModel: Decodable {
+        let last: Float
+        let buy: Float
+        let sell: Float
+        let symbol: String
+    }
 }
 ```
 
-Step 3: Now you need create a instance of NetworkSession and call method `.request`:
+Step 3: Now you need create a instance of NetworkSession and call method `.request`, don't forget to import NetworkSession:
 
 ```swift
+import Foundation
+import NetworkSession
+
 class MyClass {
   let networkSession: NetworkProtocol = NetworkSession.shared
   
-  func fetch(completion: @escaping (Result<[MyModel], ApiError>) -> Void) {
-    let request = MyRequest(path: "/v1/public/endpoint", parameters: [:])
+    func fetch() {
+        let request = MyRequest(parameters: [:])
 
-    networkSession.request(request: request, result: {(result: Result<Response<MyModel>, ApiError>) in
-        switch result {
-        case .success(let response):
-            completion(.success(response.results))
-        case .failure(let error):
-            completion(.failure(error))
-        }
-    })
+        networkSession.request(request: request, result: {(result: Result<CurrencyModel?, NetworkError>) in
+            switch result {
+            case .success(let response):
+                guard let model = response else { return }
+                print(model.BRL.symbol)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        })
+    }
   }
 }
 ```
