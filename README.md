@@ -50,8 +50,7 @@ import Foundation
 import NetworkSession
 
 class MyClass {
-  let networkSession: NetworkProtocol = NetworkSession.shared
-  
+    let networkSession: NetworkProtocol = NetworkSession.shared
     func fetch() {
         let request = MyRequest(parameters: [:])
 
@@ -65,7 +64,6 @@ class MyClass {
             }
         })
     }
-  }
 }
 ```
 
