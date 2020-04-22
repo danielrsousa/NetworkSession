@@ -11,7 +11,7 @@ This is network abstraction layer written in Swift
 ### Carthage
 To install it, simply add the following line to your .cartfile
 
-`github "danielrsousa/NetworkSession" ~> 1.0`
+`github "danielrsousa/NetworkSession" ~> 1.1`
 
 ## ❓ How to use 
 
@@ -43,7 +43,7 @@ struct CurrencyModel: Decodable {
 }
 ```
 
-Step 3 Now you need create a instance of NetworkSession and call method `.request`, don't forget to import NetworkSession:
+Step 3 Now you need create a instance of NetworkSession and call method `.request`, don't forget to `import NetworkSession`:
 
 ```swift
 import Foundation
