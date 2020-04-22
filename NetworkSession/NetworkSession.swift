@@ -1,6 +1,6 @@
 //
-//  Api.swift
-//  MarvelMVVM
+//  NetworkSession.swift
+//  NetworkSession
 //
 //  Created by Daniel Rocha on 26/02/20.
 //  Copyright © 2020 Daniel Rocha. All rights reserved.
@@ -9,11 +9,11 @@
 import Foundation
 
 public protocol NetworkProtocol {
-    typealias ResultCompletion<R> = (Result<R?, ApiError>) -> Void
-    func request<R: Decodable>(request: ApiRequestProtocol, result: @escaping ResultCompletion<R>)
+    typealias ResultCompletion<R> = (Result<R?, NetworkError>) -> Void
+    func request<R: Decodable>(request: NetworkRequestProtocol, result: @escaping ResultCompletion<R>)
 }
 
-public protocol ApiRequestProtocol {
+public protocol NetworkRequestProtocol {
     var baseURL: String { get }
     var path: String { get }
     var method: HTTPMethod { get }
@@ -30,7 +30,7 @@ public class NetworkSession: NetworkProtocol {
     private init() {}
     
     // MARK: - Internal Methods
-    public func request<R: Decodable>(request: ApiRequestProtocol, result: @escaping ResultCompletion<R>) {
+    public func request<R: Decodable>(request: NetworkRequestProtocol, result: @escaping ResultCompletion<R>) {
         dataTask?.cancel()
         
         do {
@@ -51,13 +51,13 @@ public class NetworkSession: NetworkProtocol {
                  
                 guard let http = response as? HTTPURLResponse else {
                     printFailure("Problemas de conexão")
-                    result(.failure(ApiError.connectionFailure))
+                    result(.failure(NetworkError.connectionFailure))
                     return
                 }
 
                 guard let status = HTTPStatusCode(rawValue: http.statusCode), let data = data else {
                     printFailure("Falha ao converter status code ou data")
-                    result(.failure(ApiError.connectionFailure))
+                    result(.failure(NetworkError.connectionFailure))
                     return
                 }
 
@@ -73,18 +73,18 @@ public class NetworkSession: NetworkProtocol {
                 default:
                      if let error = error {
                          printFailure("Erro de requisição \(error.localizedDescription)")
-                         result(.failure(ApiError.requestError(error)))
+                         result(.failure(NetworkError.requestError(error)))
                          return
                      }
                      printFailure("Erro de requisição desconhecido")
-                     result(.failure(ApiError.unknown))
+                     result(.failure(NetworkError.unknown))
                 }
             })
             
             dataTask?.resume()
         } catch let error {
             printFailure("Lançamento de falha \(error.localizedDescription)")
-            guard let error = error as? ApiError else {
+            guard let error = error as? NetworkError else {
                 result(.failure(.unknown))
                 return
             }
@@ -93,7 +93,7 @@ public class NetworkSession: NetworkProtocol {
     }
     
     // MARK: - Private Methods
-    private func createURL(_ request: ApiRequestProtocol) throws -> URL {
+    private func createURL(_ request: NetworkRequestProtocol) throws -> URL {
         let requestUrl = "\(request.baseURL)\(request.path)"
         var component = URLComponents(string: requestUrl)
         
@@ -105,13 +105,13 @@ public class NetworkSession: NetworkProtocol {
         
         guard let url = component?.url else {
             printFailure("Problemas ao converter url")
-            throw ApiError.malformedRequest
+            throw NetworkError.malformedRequest
         }
         
         return url
     }
     
-    private func createBody(_ request: ApiRequestProtocol) throws -> Data? {
+    private func createBody(_ request: NetworkRequestProtocol) throws -> Data? {
         guard  request.method != .get else { return nil }
         return try JSONSerialization.data(withJSONObject: request.parameters)
     }

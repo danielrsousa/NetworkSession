@@ -1,6 +1,6 @@
 //
 //  HttpStatusCode.swift
-//  MarvelMVVM
+//  NetworkSession
 //
 //  Created by Daniel Rocha on 26/02/20.
 //  Copyright © 2020 Daniel Rocha. All rights reserved.
