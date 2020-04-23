@@ -8,6 +8,11 @@ This is network abstraction layer written in Swift
 
 ## ⚒ Instalation
 
+### CocoaPods
+Add this line in .podfile
+
+`pod "NetworkSession" ~> 1.1.2`
+
 ### Carthage
 To install it, simply add the following line to your .cartfile
 
