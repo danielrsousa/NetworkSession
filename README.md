@@ -11,7 +11,7 @@ This is network abstraction layer written in Swift
 ### Carthage
 To install it, simply add the following line to your .cartfile
 
-`github "danielrsousa/NetworkSession" ~> 1.1`
+`github "danielrsousa/NetworkSession" ~> 1.1.2`
 
 ## ❓ How to use 
 
