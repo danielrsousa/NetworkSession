@@ -1,7 +1,7 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=plastic)](https://github.com/Carthage/Carthage)
 [![CocoaPods compatible](https://img.shields.io/static/v1?label=CocoaPods&message=compatible&style=plastic&color=03fca5&logo=appveyo)](https://github.com/Carthage/Carthage)
 ![Swift 5.0 compatible](https://img.shields.io/static/v1?label=Swift&message=5.0&style=plastic&logo=appveyo)
-![Swift 5.0 compatible](https://img.shields.io/static/v1?label=Minimum%20iOS%20version&message=13.2&color=F76831&style=plastic&logo=appveyo)
+![Swift 5.0 compatible](https://img.shields.io/static/v1?label=Minimum%20iOS%20version&message=10.0&color=F76831&style=plastic&logo=appveyo)
 
 # NetworkSession
 
@@ -14,10 +14,14 @@ Add this line in .podfile
 
 `pod 'NetworkSession', '~> 1.1.2'`
 
+And run `pod install` in terminal
+
 ### Carthage
 To install it, simply add the following line to your .cartfile
 
 `github "danielrsousa/NetworkSession" ~> 1.1.2`
+
+And run `carthage update` in terminal
 
 ## ❓ How to use 
 
