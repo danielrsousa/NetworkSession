@@ -5,7 +5,7 @@
 
 # NetworkSession
 
-This is network abstraction layer written in Swift
+This is a network abstraction layer written in Swift
 
 ## ⚒ Instalation
 
@@ -21,7 +21,8 @@ To install it, simply add the following line to your .cartfile
 
 ## ❓ How to use 
 
-Step 1 Create your request object:
+Step 1 
+Create your request object:
 
 ```swift
 struct MyRequest: NetworkRequestProtocol {
@@ -33,7 +34,8 @@ struct MyRequest: NetworkRequestProtocol {
 }
 ```
 
-Step 2 Create your model using the Decodable protocol:
+Step 2 
+Create your model using the Decodable protocol:
 
 ```swift
 struct CurrencyModel: Decodable {
@@ -49,7 +51,8 @@ struct CurrencyModel: Decodable {
 }
 ```
 
-Step 3 Now you need create a instance of NetworkSession and call method `.request`, don't forget to `import NetworkSession`:
+Step 3 
+Now you need create a instance of NetworkSession and to call method `.request`, don't forget to `import NetworkSession`:
 
 ```swift
 import Foundation
