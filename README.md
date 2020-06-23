@@ -12,14 +12,14 @@ This is a network abstraction layer written in Swift
 ### CocoaPods
 Add this line in .podfile
 
-`pod 'NetworkSession', '~> 1.1.2'`
+`pod 'NetworkSession', '~> 1.2.0'`
 
 And run `pod install` in terminal
 
 ### Carthage
 To install it, simply add the following line to your .cartfile
 
-`github "danielrsousa/NetworkSession" ~> 1.1.2`
+`github "danielrsousa/NetworkSession" ~> 1.2.0`
 
 And run `carthage update` in terminal
 
@@ -65,7 +65,7 @@ import NetworkSession
 class MyClass {
     let networkSession: NetworkProtocol = NetworkSession.shared
     func fetch() {
-        let request = MyRequest(parameters: [:])
+        let request = MyRequest()
 
         networkSession.request(request: request, result: {(result: Result<CurrencyModel?, NetworkError>) in
             switch result {
