@@ -7,7 +7,7 @@ Pod::Spec.new do |spec|
   spec.homepage     = "https://github.com/danielrsousa/NetworkSession"
   spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.author             = { "" => "danielrochadesousa@gmail.com" }
-  spec.source       = { :git => "https://github.com/danielrsousa/NetworkSession.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "git@github.com:danielrsousa/NetworkSession.git", :tag => "#{spec.version}" }
   spec.source_files  = "NetworkSession/**/*.{swift}"
   spec.swift_version = "5.0"
 end
