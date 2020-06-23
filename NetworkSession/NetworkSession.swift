@@ -18,7 +18,7 @@ public protocol NetworkRequestProtocol {
     var path: String { get }
     var method: HTTPMethod { get }
     var headers: [String: String]? { get }
-    var parameters: [String: Any] { get }
+    var parameters: [String: Any]? { get }
 }
 
 public class NetworkSession: NetworkProtocol {
@@ -41,49 +41,48 @@ public class NetworkSession: NetworkProtocol {
             urlRequest.httpMethod = request.method.rawValue
             urlRequest.allHTTPHeaderFields = request.headers
             urlRequest.httpBody = try createBody(request)
-             
-            #if DEBUG
-            print("🚀 UrlRequest: \(urlRequest)")
-            #endif
+            print(items: "🚀 UrlRequest: \(urlRequest)")
             
             dataTask = session.dataTask(with: urlRequest, completionHandler: { [weak self] (data, response, error) in
                 defer { self?.dataTask = nil }
                  
                 guard let http = response as? HTTPURLResponse else {
-                    printFailure("Problemas de conexão")
+                    print(.failure, "Problemas de conexão")
                     result(.failure(NetworkError.connectionFailure))
                     return
                 }
 
                 guard let status = HTTPStatusCode(rawValue: http.statusCode), let data = data else {
-                    printFailure("Falha ao converter status code ou data")
+                    print(.failure, "Falha ao converter status code ou data")
                     result(.failure(NetworkError.connectionFailure))
                     return
                 }
 
-                printStatus(http.statusCode, data: data)
+                print(.json(data: data))
+                
                 switch status {
                 case .ok:
                     guard let model = try? JSONDecoder().decode(R.self, from: data) as R else {
                         result(.success(nil))
                         return
                     }
-
+                    
+                    print(.success, "Requição realizada com sucesso")
                     result(.success(model))
                 default:
                      if let error = error {
-                         printFailure("Erro de requisição \(error.localizedDescription)")
+                        print(.failure, "Erro de requisição \(error.localizedDescription)")
                          result(.failure(NetworkError.requestError(error)))
                          return
                      }
-                     printFailure("Erro de requisição desconhecido")
+                     print(.failure, "Erro de requisição desconhecido")
                      result(.failure(NetworkError.unknown))
                 }
             })
             
             dataTask?.resume()
         } catch let error {
-            printFailure("Lançamento de falha \(error.localizedDescription)")
+            print(.failure, "Lançamento de falha \(error.localizedDescription)")
             guard let error = error as? NetworkError else {
                 result(.failure(.unknown))
                 return
@@ -97,14 +96,14 @@ public class NetworkSession: NetworkProtocol {
         let requestUrl = "\(request.baseURL)\(request.path)"
         var component = URLComponents(string: requestUrl)
         
-        if request.method == .get && !request.parameters.isEmpty {
-            component?.queryItems = request.parameters.map {
+        if let parameters = request.parameters, request.method == .get {
+            component?.queryItems = parameters.map {
                 URLQueryItem(name: $0.key, value: "\($0.value)")
             }
         }
         
         guard let url = component?.url else {
-            printFailure("Problemas ao converter url")
+            print(.failure, "Problemas ao converter url")
             throw NetworkError.malformedRequest
         }
         
@@ -112,24 +111,7 @@ public class NetworkSession: NetworkProtocol {
     }
     
     private func createBody(_ request: NetworkRequestProtocol) throws -> Data? {
-        guard  request.method != .get else { return nil }
-        return try JSONSerialization.data(withJSONObject: request.parameters)
+        guard  request.method != .get, let parameters = request.parameters else { return nil }
+        return try JSONSerialization.data(withJSONObject: parameters)
     }
 }
-
-fileprivate func printFailure(_ message: String) {
-    #if DEBUG
-    print("❌ \(message)")
-    #endif
-}
-
-fileprivate func printStatus(_ status: Int, data: Data) {
-    #if DEBUG
-    print("✅ Status: \(status)")
-    if let json = try? JSONSerialization.jsonObject(with: data, options: []) {
-        print("Json: \(json)")
-    }
-    #endif
-}
-
-

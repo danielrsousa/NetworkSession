@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     }
 
     func fetch() {
-        let request = MyRequest(parameters: [:])
+        let request = MyRequest()
 
         networkSession.request(request: request, result: {(result: Result<CurrencyModel?, NetworkError>) in
             switch result {
@@ -38,7 +38,7 @@ struct MyRequest: NetworkRequestProtocol {
     var path: String = "/ticker"
     var method: HTTPMethod  = .get
     var headers: [String : String]?
-    var parameters: [String : Any]
+    var parameters: [String : Any]?
 }
 
 struct CurrencyModel: Decodable {

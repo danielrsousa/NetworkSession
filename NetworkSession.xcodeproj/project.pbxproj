@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A2470DF24A2A98F00ED4EED /* Print.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2470DE24A2A98F00ED4EED /* Print.swift */; };
+		9A2470E124A2B18A00ED4EED /* NetworkSession.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B377F387244A7F3100C7C233 /* NetworkSession.framework */; };
 		B377F391244A7F3200C7C233 /* NetworkSession.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B377F387244A7F3100C7C233 /* NetworkSession.framework */; };
 		B377F396244A7F3200C7C233 /* NetworkSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B377F395244A7F3200C7C233 /* NetworkSessionTests.swift */; };
 		B377F398244A7F3200C7C233 /* NetworkSession.h in Headers */ = {isa = PBXBuildFile; fileRef = B377F38A244A7F3100C7C233 /* NetworkSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A2470DE24A2A98F00ED4EED /* Print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Print.swift; sourceTree = "<group>"; };
 		B377F387244A7F3100C7C233 /* NetworkSession.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkSession.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B377F38A244A7F3100C7C233 /* NetworkSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkSession.h; sourceTree = "<group>"; };
 		B377F38B244A7F3200C7C233 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,12 +76,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2470E124A2B18A00ED4EED /* NetworkSession.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A2470E024A2B18A00ED4EED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B377F37D244A7F3100C7C233 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +97,7 @@
 				B377F394244A7F3200C7C233 /* NetworkSessionTests */,
 				B37F87602450E920009C82CE /* Example */,
 				B377F388244A7F3100C7C233 /* Products */,
+				9A2470E024A2B18A00ED4EED /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,6 +120,7 @@
 				B377F3A2244A8D7500C7C233 /* HTTPStatusCode.swift */,
 				B377F38A244A7F3100C7C233 /* NetworkSession.h */,
 				B377F38B244A7F3200C7C233 /* Info.plist */,
+				9A2470DE24A2A98F00ED4EED /* Print.swift */,
 			);
 			path = NetworkSession;
 			sourceTree = "<group>";
@@ -278,6 +291,7 @@
 			files = (
 				B377F3A6244A8D7500C7C233 /* HTTPStatusCode.swift in Sources */,
 				B37F87592450CDB4009C82CE /* NetworkSession.swift in Sources */,
+				9A2470DF24A2A98F00ED4EED /* Print.swift in Sources */,
 				B377F3A8244A8D7500C7C233 /* NetworkError.swift in Sources */,
 				B377F3A7244A8D7500C7C233 /* HTTPMethod.swift in Sources */,
 			);
@@ -463,6 +477,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = NetworkSession/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -490,6 +505,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = NetworkSession/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -549,6 +565,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y55X2VP8Z8;
 				INFOPLIST_FILE = Example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -567,6 +584,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y55X2VP8Z8;
 				INFOPLIST_FILE = Example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
