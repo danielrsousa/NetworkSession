@@ -12,7 +12,7 @@ import UIKit
 public class MyViewClass: UIView {
     
     @objc
-    init(teste: String) {
+    public init(teste: String) {
         super.init(frame: CGRect.zero)
     }
     
