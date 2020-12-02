@@ -8,7 +8,8 @@ Pod::Spec.new do |spec|
   spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.author             = { "" => "danielrochadesousa@gmail.com" }
   spec.source       = { :git => "https://github.com/danielrsousa/NetworkSession.git", :tag => "#{spec.version}" }
-  spec.source_files  = "NetworkSession/**/*.{swift}"
+  spec.source_files  = "NetworkSession.framework/Headers/*.{h}"
   spec.swift_version = "5.0"
   spec.vendored_frameworks = 'NetworkSession.framework'
+  spec.preserve_paths =  'NetworkSession.framework/*'
 end
