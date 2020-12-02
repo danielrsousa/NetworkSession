@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A9390482577EA4000A32CCB /* MyViewClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9390472577EA4000A32CCB /* MyViewClass.swift */; };
 		B377F391244A7F3200C7C233 /* NetworkSession.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B377F387244A7F3100C7C233 /* NetworkSession.framework */; };
 		B377F396244A7F3200C7C233 /* NetworkSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B377F395244A7F3200C7C233 /* NetworkSessionTests.swift */; };
 		B377F398244A7F3200C7C233 /* NetworkSession.h in Headers */ = {isa = PBXBuildFile; fileRef = B377F38A244A7F3100C7C233 /* NetworkSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A9390472577EA4000A32CCB /* MyViewClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewClass.swift; sourceTree = "<group>"; };
 		B377F387244A7F3100C7C233 /* NetworkSession.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkSession.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B377F38A244A7F3100C7C233 /* NetworkSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkSession.h; sourceTree = "<group>"; };
 		B377F38B244A7F3200C7C233 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				B377F3A2244A8D7500C7C233 /* HTTPStatusCode.swift */,
 				B377F38A244A7F3100C7C233 /* NetworkSession.h */,
 				B377F38B244A7F3200C7C233 /* Info.plist */,
+				9A9390472577EA4000A32CCB /* MyViewClass.swift */,
 			);
 			path = NetworkSession;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			files = (
 				B377F3A6244A8D7500C7C233 /* HTTPStatusCode.swift in Sources */,
 				B37F87592450CDB4009C82CE /* NetworkSession.swift in Sources */,
+				9A9390482577EA4000A32CCB /* MyViewClass.swift in Sources */,
 				B377F3A8244A8D7500C7C233 /* NetworkError.swift in Sources */,
 				B377F3A7244A8D7500C7C233 /* HTTPMethod.swift in Sources */,
 			);
