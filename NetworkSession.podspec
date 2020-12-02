@@ -12,4 +12,5 @@ Pod::Spec.new do |spec|
   spec.swift_version = "5.0"
   spec.vendored_frameworks = 'NetworkSession.framework'
   spec.preserve_paths =  'NetworkSession.framework/*'
+  spec.framework = 'NetworkSession'
 end
